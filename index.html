@@ -274,8 +274,10 @@
             document.getElementById(`preview-${fmt}`).textContent = formatTime(date, fmt);
         });
 
-        exampleOutput.textContent = `Non-trivial welcome call at <t:${ts}:t> (<t:${ts}:R>)`;
-        exampleRenderedText.innerHTML = `Non-trivial welcome call at <span class="d-ts">${formatTime(date, 't')}</span> (<span class="d-ts">${formatTime(date, 'R')}</span>)`;
+        const fixedTs = 1772992800;
+        const fixedDate = new Date(fixedTs * 1000);
+        exampleOutput.textContent = `Non-trivial welcome call in <t:${fixedTs}:F> (<t:${fixedTs}:R>)`;
+        exampleRenderedText.innerHTML = `Non-trivial welcome call in <span class="d-ts">${formatTime(fixedDate, 'F')}</span> (<span class="d-ts">${formatTime(fixedDate, 'R')}</span>)`;
     }
 
     function copyToClipboard(elementId) {
