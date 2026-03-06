@@ -133,6 +133,29 @@
         font-family: monospace;
         font-size: 1.05em;
         word-wrap: break-word;
+        color: #dbdee1;
+    }
+    .example-rendered {
+        margin-top: 16px;
+        font-size: 1.1em;
+        color: #dbdee1;
+        background-color: #2b2d31;
+        padding: 12px;
+        border-radius: 4px;
+    }
+    .example-rendered-label {
+        font-size: 0.85em;
+        text-transform: uppercase;
+        color: #80848e;
+        font-weight: 700;
+        margin-bottom: 6px;
+        display: block;
+    }
+    .d-ts {
+        background-color: #3f4147;
+        padding: 2px 4px;
+        border-radius: 3px;
+        font-weight: 500;
     }
 </style>
 </head>
@@ -160,6 +183,10 @@
         <h3>Example Usage</h3>
         <p>Instead of hardcoding timezones like <em>11:00AM PDT / 2:00PM EDT / 6:00PM UTC</em>, copy the generated message below to show a localized time and automatic countdown for everyone:</p>
         <div class="example-code" id="example-output"></div>
+        <div class="example-rendered">
+            <span class="example-rendered-label">Rendered Preview</span>
+            <div id="example-rendered-text"></div>
+        </div>
     </div>
 </div>
 
@@ -168,6 +195,7 @@
     const container = document.getElementById('formats-container');
     const input = document.getElementById('time-input');
     const exampleOutput = document.getElementById('example-output');
+    const exampleRenderedText = document.getElementById('example-rendered-text');
 
     const svgIcon = `<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>`;
 
@@ -247,6 +275,7 @@
         });
 
         exampleOutput.textContent = `Non-trivial welcome call at <t:${ts}:t> (<t:${ts}:R>)`;
+        exampleRenderedText.innerHTML = `Non-trivial welcome call at <span class="d-ts">${formatTime(date, 't')}</span> (<span class="d-ts">${formatTime(date, 'R')}</span>)`;
     }
 
     function copyToClipboard(elementId) {
